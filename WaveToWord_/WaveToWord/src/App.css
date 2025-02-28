@@ -106,3 +106,42 @@
         padding: 10px 20px;
         border-radius: 7px;
     }
+    
+    .heading {
+        margin-top: 60px;
+        font-size: 24px;
+        text-align: center;
+        font-family: cursive;
+    }
+    
+    .text-editor {
+        width: 70rem;
+        height: 60vh;
+        max-height: 105vh;
+        padding: 15px;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        resize: none;
+        display: block;
+        margin: 20px auto;
+        overflow-y: auto;
+    }
+    
+    .download-button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .download-button:hover {
+        background-color: #45a049;
+    }
