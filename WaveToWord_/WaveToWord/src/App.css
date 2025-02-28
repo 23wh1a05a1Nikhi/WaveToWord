@@ -1,42 +1,107 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+    #root {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    body {
+        background-image: url(./assets/bgimage2.jpg);
+        background-position: contain;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    
+    .logo {
+        height: 6em;
+        padding: 1.5em;
+        will-change: filter;
+        transition: filter 300ms;
+    }
+    
+    .logo:hover {
+        filter: drop-shadow(0 0 2em #646cffaa);
+    }
+    
+    .logo.react:hover {
+        filter: drop-shadow(0 0 2em #61dafbaa);
+    }
+    
+    @keyframes logo-spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+        a:nth-of-type(2) .logo {
+            animation: logo-spin infinite 20s linear;
+        }
+    }
+    
+    .card {
+        padding: 2em;
+    }
+    
+    .read-the-docs {
+        color: #888;
+    }
+    
+    #Files {
+        margin-top: 6rem;
+    }
+    
+    #gentext {
+        background-color: #4e4e4e;
+        font-family: cursive;
+        color: rgb(255, 255, 255);
+        border-radius: 7px;
+        margin-right: 30px;
+    }
+    
+    #change {
+        background-color: #4e4e4e;
+        font-family: cursive;
+        color: rgb(255, 255, 255);
+        border-radius: 7px;
+        margin-left: 4px;
+    }
+    
+    .custom-file-label {
+        background-color: #3a3a3a;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .custom-file-label:hover {
+        background-color: #0000009d;
+        padding: 20px 30px;
+        border-radius: 7px;
+    }
+    
+    .custom-file-label:active {
+        background-color: #8f90929d;
+        padding: 20px 30px;
+        border-radius: 7px;
+    }
+    
+    #gentext:hover,
+    #change:hover {
+        background-color: #0000009d;
+        padding: 15px 20px;
+        border-radius: 7px;
+    }
+    
+    #gentext:active,
+    #change:active {
+        background-color: #8f90929d;
+        padding: 10px 20px;
+        border-radius: 7px;
+    }

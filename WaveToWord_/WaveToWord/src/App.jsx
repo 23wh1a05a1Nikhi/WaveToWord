@@ -4,32 +4,77 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const fileSizeMB = file.size / (1024 * 1024);
+
+      if (fileSizeMB > 5) {
+        alert('File size exceeds 5MB. Please choose a smaller file.');
+        event.target.value = ''; 
+      }
+    } else {
+      alert('No file selected.');
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <form class="bg">
+      <div className="bgclass">
+        <input
+          className="custom-file-label"
+          type="file"
+          id="Files"
+          accept=".mp3, .wav"
+          onChange={handleFileChange} 
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <br />
+      <br />
+      <br />
+      <button type="submit" id="gentext">
+        Generate Text
+      </button>
+      <button type="reset" id="change">
+        Resubmit File
+      </button>
+    </form>
+  );
 }
 
-export default App
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+
+  //   if (file) {
+  //     const fileSizeMB = file.size / (1024 * 1024);
+
+  //     if (fileSizeMB > 5) {
+  //       alert('File size exceeds 5MB. Please choose a smaller file.');
+  //       event.target.value = '';
+  //     }
+  //   } else {
+  //     alert('No file selected.');
+  //   }
+  // };
+
+
+
+
+  // return(
+  //   <form>
+  //     <div class="bgclass">
+  //       <input class="custom-file-label" type = "file" id="Files" for="Files" accept=".mp3, .wav" onChange={handleFileChange}  ></input>
+  //     </div>
+  //       <br></br>
+  //       <br></br>
+  //       <br></br>
+  //       <button type="submit" id="gentext">Generate Text</button>
+  //       <button type="reset" id="change">Resubmit File</button>        
+  //   </form>
+
+  
+    
+
+
+export default App;
