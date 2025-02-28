@@ -10,6 +10,7 @@ function TextGeneratorPage() {
   const location = useLocation();
   const selectedFormat = location.state?.format || "notes"; // Get format from state
 
+  // Simulate text generation delay
   useEffect(() => {
     setTimeout(() => {
       setGeneratedText(
@@ -19,6 +20,7 @@ function TextGeneratorPage() {
     }, 2000);
   }, []);
 
+  // Function to download text as a .docx file
   const handleDownload = () => {
     const doc = new Document({
       sections: [
@@ -33,6 +35,11 @@ function TextGeneratorPage() {
     });
   };
 
+  // Handle submit button click
+  const handleSubmit = () => {
+    alert("Text submitted successfully!");
+  };
+
   return (
     <div className="bg">
       {/* Navbar */}
@@ -41,11 +48,11 @@ function TextGeneratorPage() {
           <Link to="/" className="nav-button">Audio Transcript</Link>
           <Link to="/settings" className="nav-button">Settings</Link>
           <Link to="/qna" className="nav-button">Q&A</Link>
-          <Link to="/about" className="nav-button">Home</Link>
+          <Link to="/About" className="nav-button">Home</Link>
         </div>
       </nav>
 
-      <h1 className="heading">{selectedFormat === "notes" ? "Generated Notes" : "Generated Text"}</h1>
+      <h1 className="heading">Generated Content</h1>
 
       {isLoading ? (
         <p>Generating {selectedFormat === "notes" ? "Notes" : "Text"}...</p>
@@ -56,9 +63,14 @@ function TextGeneratorPage() {
             value={generatedText}
             onChange={(e) => setGeneratedText(e.target.value)}
           />
-          <button className="download-button" onClick={handleDownload}>
-            Download File
-          </button>
+          <div className="button-container">
+            <button className="download-button" onClick={handleDownload}>
+              Download File
+            </button>
+            <button className="submit-button" onClick={handleSubmit}>
+              Submit
+            </button>
+          </div>
         </>
       )}
     </div>

@@ -128,18 +128,22 @@
         overflow-y: auto;
     }
     
-    .download-button {
+    .download-button,
+    .submit-button {
         margin-top: 15px;
-        padding: 10px 20px;
-        font-size: 16px;
+        padding: 10px 24px;
+        font-size: 17px;
         background-color: #4CAF50;
         color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         display: block;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 5rem;
+    }
+    
+    .download-button {
+        margin-left: 45rem;
     }
     
     .download-button:hover {
@@ -175,4 +179,43 @@
     
     .nav-button:hover {
         background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .text-editor {
+        color: black;
+        /* Ensure text is visible */
+        background-color: white;
+        width: 70rem;
+        height: 300px;
+        margin: 10px auto;
+        display: block;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .loading-text {
+        font-size: 18px;
+        text-align: center;
+        color: gray;
+    }
+    
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    
+    .download-button:hover,
+    .submit-button:hover {
+        background-color: #45a049;
     }

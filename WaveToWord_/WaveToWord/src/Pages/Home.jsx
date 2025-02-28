@@ -15,39 +15,7 @@ function Home() {
           
         </div>
       </nav>
-
-      <h1>Select a module</h1>
-
-      <div className="options">
-        <label>
-          <input
-            type="radio"
-            name="format"
-            value="notes"
-            checked={selectedFormat === "notes"}
-            onChange={() => setSelectedFormat("notes")}
-          />
-          Notes Format
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="format"
-            value="text"
-            checked={selectedFormat === "text"}
-            onChange={() => setSelectedFormat("text")}
-          />
-          Text Format
-        </label>
-      </div>
-
       <br />
-
-      <Link to="/notes" state={{ format: selectedFormat }}>
-        <button className="generate-button">
-          Generate {selectedFormat === "notes" ? "Notes" : "Text"} Format
-        </button>
-      </Link>
     </div>
   );
 }

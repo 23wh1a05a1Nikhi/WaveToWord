@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom"; // Import Link
+import { useRef } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import "../App.css";
 
 function NotesPage() {
@@ -26,28 +26,36 @@ function NotesPage() {
 
   // Handle Generate Button Click
   const handleGenerateClick = () => {
-    navigate("/text-generator");
+    if (fileInputRef.current && fileInputRef.current.files.length > 0) {
+      navigate("/TextGeneratorPage");
+    } else {
+      alert("Please upload a file.");
+    }
   };
 
   // Handle Resubmit File Button Click
   const handleResubmit = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ""; // Clear the selected file
+    if (fileInputRef?.current) {
+      fileInputRef.current.value = "";
+      fileInputRef.current.type = "";
+      fileInputRef.current.type = "file";
     }
   };
 
   return (
     <div className="bg">
-      {/* Navbar with Home Button */}
+      {/* Navbar with Home and About Buttons */}
       <nav className="navbar">
         <div className="nav-links">
-          <Link to="/" className="nav-button">Audio Transcript</Link> {/* Home Icon */}
+          <Link to="/About" className="nav-button">About</Link>
           <Link to="/settings" className="nav-button">Settings</Link>
           <Link to="/qna" className="nav-button">Q&A</Link>
         </div>
       </nav>
 
-      <h1>{selectedFormat === "notes" ? "Notes Format" : "Text Format"}</h1>
+      {/* Default Heading */}
+      <h1>Choose an .mp3 or .wav file</h1>
+
       <div className="bgclass">
         <input
           className="custom-file-label"
@@ -55,7 +63,7 @@ function NotesPage() {
           id="Files"
           accept=".mp3, .wav"
           onChange={handleFileChange}
-          ref={fileInputRef} // Attach the ref to input
+          ref={fileInputRef}
         />
       </div>
       <br />
