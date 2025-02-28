@@ -41,7 +41,9 @@ function NotesPage() {
       {/* Navbar with Home Button */}
       <nav className="navbar">
         <div className="nav-links">
-          <Link to="/" className="nav-button">Home</Link> {/* Home Icon */}
+          <Link to="/" className="nav-button">Audio Transcript</Link> {/* Home Icon */}
+          <Link to="/settings" className="nav-button">Settings</Link>
+          <Link to="/qna" className="nav-button">Q&A</Link>
         </div>
       </nav>
 

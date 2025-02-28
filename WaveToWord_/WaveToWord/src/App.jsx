@@ -8,10 +8,11 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/about" element={<About />} />
         <Route path="/" element={<Home />} />
         <Route path="/notes" element={<NotesPage />} />
         <Route path="/text-generator" element={<TextGeneratorPage />} />
-        <Route path="/about" element={<About />} />
+        
       </Routes>
     </Router>
   );

@@ -6,51 +6,47 @@ function Home() {
 
   return (
     <div>
-      {/* Navbar (Included on all pages) */}
+      {/* Navbar */}
       <nav className="navbar">
         <div className="nav-links">
-          <Link to="/" className="nav-button">Home</Link> {/* Home Icon */}
-          <Link to="/about" className="nav-button">About</Link> {/* About Icon */}
+          <Link to="/settings" className="nav-button">Settings</Link>
+          <Link to="/qna" className="nav-button">Q&A</Link>
+          <Link to="/about" className="nav-button">Home</Link>
         </div>
       </nav>
 
-      {/* Home Section */}
-      <div id="home" className="content">
-        <h1>Select a module</h1>
+      <h1>Select a module</h1>
 
-        {/* Radio Button Options */}
-        <div className="options">
-          <label>
-            <input
-              type="radio"
-              name="format"
-              value="notes"
-              checked={selectedFormat === "notes"}
-              onChange={() => setSelectedFormat("notes")}
-            />
-            Notes Format
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="format"
-              value="text"
-              checked={selectedFormat === "text"}
-              onChange={() => setSelectedFormat("text")}
-            />
-            Text Format
-          </label>
-        </div>
-
-        <br />
-
-        {/* Navigate to NotesPage with selected format */}
-        <Link to="/notes" state={{ format: selectedFormat }}>
-          <button className="generate-button">
-            Generate {selectedFormat === "notes" ? "Notes" : "Text"} Format
-          </button>
-        </Link>
+      <div className="options">
+        <label>
+          <input
+            type="radio"
+            name="format"
+            value="notes"
+            checked={selectedFormat === "notes"}
+            onChange={() => setSelectedFormat("notes")}
+          />
+          Notes Format
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="format"
+            value="text"
+            checked={selectedFormat === "text"}
+            onChange={() => setSelectedFormat("text")}
+          />
+          Text Format
+        </label>
       </div>
+
+      <br />
+
+      <Link to="/notes" state={{ format: selectedFormat }}>
+        <button className="generate-button">
+          Generate {selectedFormat === "notes" ? "Notes" : "Text"} Format
+        </button>
+      </Link>
     </div>
   );
 }

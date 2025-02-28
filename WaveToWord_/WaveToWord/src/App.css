@@ -6,7 +6,7 @@
     }
     
     body {
-        background-image: url(./assets/bgimage3.jpg);
+        background-image: url(./assets/bgimage4.jpg);
         /* background-position: contain; */
         background-size: cover;
         background-attachment: fixed;
@@ -150,7 +150,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 15px 30rem;
+        padding: 15px 20rem;
         /* background: rgba(0, 0, 0, 0.7); */
         color: white;
         position: fixed;
