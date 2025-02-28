@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import logging
 
 load_dotenv()
 
@@ -26,7 +27,7 @@ TEMP_DIR = Path("./temp")
 # If successful, returns transcription successful message with details
 @router.post("/transcribe/{request_id}")
 async def transcribe_audio(request_id: str):
-
+    logging.info(f"Received transcription request for: {request_id}")
     matching_files = list(TEMP_DIR.glob(f"{request_id}_*.mp3"))
     if not matching_files:
         raise HTTPException(status_code=404, detail="Audio file not found")

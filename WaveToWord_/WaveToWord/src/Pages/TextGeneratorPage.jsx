@@ -1,43 +1,48 @@
 import { useEffect, useState } from "react";
-import { saveAs } from "file-saver";
-import { Document, Packer, Paragraph } from "docx";
 import { useLocation, Link } from "react-router-dom";
+import axios from "axios";
 import "../App.css";
 
 function TextGeneratorPage() {
-  const [generatedText, setGeneratedText] = useState("");
+  const [transcribedText, setTranscribedText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
-  const selectedFormat = location.state?.format || "notes"; // Get format from state
+  const requestId = location.state?.request_id || null;
 
-  // Simulate text generation delay
+  console.log("🚀 Received requestId from navigation:", requestId);
+
   useEffect(() => {
-    setTimeout(() => {
-      setGeneratedText(
-        "• Introduction to AI\n• Machine Learning Basics\n• Deep Learning Overview\n• Applications of AI in Real-World Scenarios"
-      );
+    if (!requestId) {
+      console.log("No request_id found, skipping transcription.");
       setIsLoading(false);
-    }, 2000);
-  }, []);
+      return;
+    }
+    console.log("Fetching transcription for request ID:", requestId);
+    axios
+      .post(`http://localhost:8000/transcribe/${requestId}`)
+      .then((response) => {
+        console.log("Transcription API response: ", response.data);
+        setTranscribedText(response.data.transcription_text);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching transcription:", error);
+        setIsLoading(false);
+      });
+  }, [requestId]);
 
-  // Function to download text as a .docx file
-  const handleDownload = () => {
-    const doc = new Document({
-      sections: [
-        {
-          children: [new Paragraph(generatedText)],
-        },
-      ],
-    });
-
-    Packer.toBlob(doc).then((blob) => {
-      saveAs(blob, `Generated_${selectedFormat === "notes" ? "Notes" : "Text"}.docx`);
-    });
-  };
-
-  // Handle submit button click
-  const handleSubmit = () => {
-    alert("Text submitted successfully!");
+  const saveTranscription = async (requestId, updatedText) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8000/update_transcription/${requestId}`,
+        { transcription_text: updatedText }
+      );
+      console.log("Transcription updated:", response.data);
+      alert("Transcription saved successfully!");
+    } catch (error) {
+      console.error("Error updating transcription:", error.response?.data || error.message);
+      alert("Failed to save transcription.");
+    }
   };
 
   return (
@@ -52,23 +57,20 @@ function TextGeneratorPage() {
         </div>
       </nav>
 
-      <h1 className="heading">Generated Content</h1>
+      <h1 className="heading">Transcribed Content</h1>
 
       {isLoading ? (
-        <p>Generating {selectedFormat === "notes" ? "Notes" : "Text"}...</p>
+        <p>Loading transcription...</p>
       ) : (
         <>
           <textarea
             className="text-editor"
-            value={generatedText}
-            onChange={(e) => setGeneratedText(e.target.value)}
+            value={transcribedText} 
+            onChange={(e) => setTranscribedText(e.target.value)} 
           />
           <div className="button-container">
-            <button className="download-button" onClick={handleDownload}>
-              Download File
-            </button>
-            <button className="submit-button" onClick={handleSubmit}>
-              Submit
+            <button className="save-button" onClick={() => saveTranscription(requestId, transcribedText)}>
+              Save Transcription
             </button>
           </div>
         </>

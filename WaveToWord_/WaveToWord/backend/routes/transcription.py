@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from pymongo import MongoClient
+from pydantic import BaseModel
 
 router = APIRouter()
 
@@ -8,10 +9,14 @@ mongo_client = MongoClient(MONGO_URI)
 db = mongo_client["transcriptionDB"]
 collection = db["transcriptions"]
 
+# Define the request model for updating transcription
+class UpdateTranscriptionRequest(BaseModel):
+    transcription_text: str
+
 # Fetches the transcription from MongoDB using requestID
-# this is for displaying transcription text in Editor in frontend
 @router.get("/transcription/{request_id}")
 async def get_transcription(request_id: str):
+    """Retrieves transcription text from MongoDB for the given request_id."""
     
     transcription = collection.find_one({"request_id": request_id})
     if not transcription:
@@ -24,18 +29,21 @@ async def get_transcription(request_id: str):
     }
 
 # Updates the transcription in MongoDB with requestID and updated_text
-# Once the text is updated in frontend it is stored in the MongoDB
 @router.put("/update_transcription/{request_id}")
-async def update_transcription(request_id: str, updated_text: dict):
+async def update_transcription(request_id: str, request: UpdateTranscriptionRequest):
     """Updates the transcription text with user edits from the frontend text editor."""
     
     transcription = collection.find_one({"request_id": request_id})
     if not transcription:
         raise HTTPException(status_code=404, detail="Transcription not found")
 
-    collection.update_one(
+    # Update the transcription text
+    result = collection.update_one(
         {"request_id": request_id},
-        {"$set": {"transcription_text": updated_text["transcription_text"]}}
+        {"$set": {"transcription_text": request.transcription_text}}
     )
+
+    if result.modified_count == 0:
+        raise HTTPException(status_code=500, detail="Failed to update transcription")
 
     return {"message": "Transcription updated successfully"}

@@ -46,7 +46,7 @@ function NotesPage() {
       console.log("Upload Response:", response.data);
 
       // Navigate to TextGeneratorPage with request_id
-      navigate("/TextGeneratorPage", { state: { requestId: response.data.request_id } });
+      navigate("/TextGeneratorPage", { state: { request_id: response.data.request_id } });
     } catch (error) {
       console.error("Error uploading file:", error);
       alert(error.response?.data?.detail || "File upload failed.");
