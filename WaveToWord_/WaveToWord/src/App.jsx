@@ -20,7 +20,9 @@ function App() {
   };
 
   return (
+    
     <form class="bg">
+      <h1>Notes Format</h1>
       <div className="bgclass">
         <input
           className="custom-file-label"

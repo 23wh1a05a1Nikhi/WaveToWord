@@ -6,10 +6,11 @@
     }
     
     body {
-        background-image: url(./assets/bgimage2.jpg);
-        background-position: contain;
+        background-image: url(./assets/bgimage3.jpg);
+        /* background-position: contain; */
         background-size: cover;
         background-attachment: fixed;
+        background-repeat: no-repeat;
     }
     
     .logo {
@@ -51,7 +52,7 @@
     }
     
     #Files {
-        margin-top: 6rem;
+        margin-top: 2rem;
     }
     
     #gentext {
