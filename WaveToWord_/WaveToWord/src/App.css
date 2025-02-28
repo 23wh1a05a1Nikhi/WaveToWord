@@ -145,3 +145,34 @@
     .download-button:hover {
         background-color: #45a049;
     }
+    
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 30rem;
+        /* background: rgba(0, 0, 0, 0.7); */
+        color: white;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        /* z-index: 1000; */
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .nav-button {
+        text-decoration: none;
+        color: white;
+        font-size: 24px;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    
+    .nav-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }

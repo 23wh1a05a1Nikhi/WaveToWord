@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
+import { useNavigate, useLocation, Link } from "react-router-dom"; // Import Link
 import "../App.css";
 
 function NotesPage() {
@@ -38,6 +38,13 @@ function NotesPage() {
 
   return (
     <div className="bg">
+      {/* Navbar with Home Button */}
+      <nav className="navbar">
+        <div className="nav-links">
+          <Link to="/" className="nav-button">Home</Link> {/* Home Icon */}
+        </div>
+      </nav>
+
       <h1>{selectedFormat === "notes" ? "Notes Format" : "Text Format"}</h1>
       <div className="bgclass">
         <input
