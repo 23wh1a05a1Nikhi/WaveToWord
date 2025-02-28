@@ -1,1 +1,1 @@
-# WaveToWord - Audio Transcription using OpenAI's WhisperUI
+# WaveToWord - Audio Transcription using OpenAI's Whisper
