@@ -1,13 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import axios from "axios";
 import "../App.css";
 
 function NotesPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const fileInputRef = useRef(null);
+  const [uploading, setUploading] = useState(false);
 
-  // Read format from Home page, default to "notes" if not provided
   const selectedFormat = location.state?.format || "notes";
 
   const handleFileChange = (event) => {
@@ -25,20 +26,40 @@ function NotesPage() {
   };
 
   // Handle Generate Button Click
-  const handleGenerateClick = () => {
-    if (fileInputRef.current && fileInputRef.current.files.length > 0) {
-      navigate("/TextGeneratorPage");
-    } else {
+  const handleGenerateClick = async () => {
+    if (!fileInputRef.current.files.length) {
       alert("Please upload a file.");
+      return;
+    }
+
+    const file = fileInputRef.current.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      setUploading(true);
+      const response = await axios.post("http://localhost:8000/upload/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      alert("File uploaded successfully!");
+      console.log("Upload Response:", response.data);
+
+      // Navigate to TextGeneratorPage with request_id
+      navigate("/TextGeneratorPage", { state: { requestId: response.data.request_id } });
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert(error.response?.data?.detail || "File upload failed.");
+    } finally {
+      setUploading(false);
     }
   };
 
-  // Handle Resubmit File Button Click
   const handleResubmit = () => {
-    if (fileInputRef?.current) {
+    if (fileInputRef.current) {
       fileInputRef.current.value = "";
       fileInputRef.current.type = "";
-      fileInputRef.current.type = "file";
+      fileInputRef.current.type = "file";  // Reset file input
     }
   };
 
