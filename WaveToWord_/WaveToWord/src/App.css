@@ -58,7 +58,7 @@
     #gentext {
         background-color: #4e4e4e;
         font-family: cursive;
-        color: rgb(255, 255, 255);
+        color: white;
         border-radius: 7px;
         margin-right: 30px;
     }
@@ -219,3 +219,46 @@
     .submit-button:hover {
         background-color: #45a049;
     }
+
+    .chat-container {
+        max-width: 500px;
+        margin: auto;
+        text-align: center;
+      }
+      
+      .chat-box {
+        background: #f4f4f4;
+        padding: 10px;
+        border-radius: 10px;
+        height: 300px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+      }
+      
+      .message {
+        padding: 8px;
+        margin: 5px 0;
+        border-radius: 5px;
+      }
+      
+      .message.user {
+        background-color: #007bff;
+        color: white;
+        text-align: right;
+      }
+      
+      .message.bot {
+        background-color: #f1f1f1;
+        text-align: left;
+      }
+      
+      input {
+        width: 80%;
+        padding: 8px;
+      }
+      
+      button {
+        padding: 8px;
+        margin-left: 5px;
+      }
+      
